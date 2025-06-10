@@ -165,4 +165,58 @@ kable(models_table,
 
 ```
 
+e. Run the models
+
+```{r}
+# Clean the column name to avoid syntax issues
+nest_boxes <- nest_boxes %>%
+  rename(edge_distance = `edge distance`)
+
+# Model 1: Null model
+model1_null <- glm(sp ~ 1, 
+                   data = nest_boxes, 
+                   family = binomial)
+
+# Model 2: Saturated model (full model with interaction)
+model2_full <- glm(sp ~ season * edge_distance, 
+                   data = nest_boxes, 
+                   family = binomial)
+
+# Model 3: Season only
+model3_season <- glm(sp ~ season, 
+                     data = nest_boxes, 
+                     family = binomial)
+
+# Model 4: Distance only
+model4_distance <- glm(sp ~ edge_distance, 
+                       data = nest_boxes, 
+                       family = binomial)
+```
+
+f. Check the diagnostics
+
+```{r}
+# Check diagnostics for each model
+par(mfrow = c(2, 2))  # Set up 2x2 plotting layout
+
+# Model 1 diagnostics
+sim_residuals1 <- simulateResiduals(model1_null)
+plot(sim_residuals1, main = "Model 1: Null")
+
+# Model 2 diagnostics  
+sim_residuals2 <- simulateResiduals(model2_full)
+plot(sim_residuals2, main = "Model 2: Full")
+
+# Model 3 diagnostics
+sim_residuals3 <- simulateResiduals(model3_season)
+plot(sim_residuals3, main = "Model 3: Season only")
+
+# Model 4 diagnostics
+sim_residuals4 <- simulateResiduals(model4_distance)
+plot(sim_residuals4, main = "Model 4: Distance only")
+
+# Reset plotting layout
+par(mfrow = c(1, 1))
+
+```
 
