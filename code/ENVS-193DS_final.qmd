@@ -220,3 +220,65 @@ par(mfrow = c(1, 1))
 
 ```
 
+g. Select the best model
+
+```{r}
+# Compare models using AIC
+model_comparison <- model.sel(model1_null, model2_full, model3_season, model4_distance)
+print(model_comparison)
+
+# Identify best model
+best_model <- get.models(model_comparison, 1)[[1]]
+
+```
+
+The best model as determined by Akaike's Information Criterion (AIC) was model2_full (season * edge_distance interaction model), which had the lowest AICc value (227.0) and received 78% of the model weight, indicating strong support. This model includes both season and distance to forest edge as predictors, plus their interaction term.
+
+```{r}
+print("Best model summary:")
+summary(best_model)
+```
+
+h. Visualize the model predictors
+
+```{r}
+# Generate predictions for the best model
+predictions <- ggpredict(best_model, terms = c("edge_distance [all]", "season"))
+
+# Create the visualization
+ggplot(predictions, aes(x = x, y = predicted, color = group)) +
+  # Add confidence intervals
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = group), 
+              alpha = 0.2, color = NA) +
+  # Add prediction lines
+  geom_line(size = 1.2) +
+  # Add original data points
+  geom_point(data = nest_boxes, 
+             aes(x = edge_distance, y = sp, color = as.factor(season)),
+             alpha = 0.6, size = 2, position = position_jitter(height = 0.02)) +
+  # Customize colors (avoid default)
+  scale_color_manual(values = c("2016" = "#2E8B57", "2019" = "#B8860B"),
+                     name = "Season") +
+  scale_fill_manual(values = c("2016" = "#2E8B57", "2019" = "#B8860B"),
+                    guide = "none") +
+  # Set axis labels in full
+  labs(x = "Distance to forest edge (meters)",
+       y = "Probability of Swift Parrot nest box occupancy",
+       color = "Season") +
+  # Remove gridlines and customize theme
+  theme_classic() +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_text(size = 11),
+    axis.title = element_text(size = 12),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11)
+  )
+```
+
+i. Write a caption for your figure
+
+Figure 1. Predicted probability of Swift Parrot (Lathamus discolor) nest box occupancy in relation to distance from forest edge and season (2016 vs 2019). Lines represent model predictions with 95% confidence intervals (shaded areas), and points show observed occupancy data. The model demonstrates how nest box occupancy patterns changed between the initial deployment year (2016) and follow-up assessment (2019). 
+
+Data from Stojanovic, D., Owens, G., Young, C.M., Alves, F. and Heinsohn, R. 2021. "Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird." Restoration Ecology. DOI: 10.1111/rec.13319.
+
