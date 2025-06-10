@@ -8,6 +8,7 @@ format:
     toc-float: true
     code-float: true
 ---
+
 [View the GitHub repository](https://github.com/madrianna03/ENVS-193DS_spring-2025_final.git)
 
 ```{r}
@@ -27,6 +28,32 @@ sst <- read_csv(here("data", "SST_update2023.csv"))
 
 # Nest box occupancy data for Problem 3
 nest_boxes <- read_csv(here("data", "occdist.csv"))
+
+```
+
+## Problem 1: Research Writing
+
+a.  Transparent statistical methods
+
+In part 1, the coworker used a Pearson's correlation coefficient test to examine the relationship between distance from headwater (km) and annual total nitrogen load (kg year^-1^). In part 2, they used a one-way ANOVA to test for differences in average nitrogen load (kg year^-1^) between the five different sources.
+
+b. More information needed
+
+They could include descriptive statistics (mean ± SD) for each source to understand the magnitude and variability in nitrogen load across sources. Including the mean and standard deviation of nitrogen load for each source gives readers biological context, not just statistical significance, and supports interpretation of the ANOVA result.
+
+Including effect size measures such as eta-squared or omega-squared would help the reader to understand the practical significance of these differences. Effect size tells us what proportion of the variance in nitrogen load is explained by source type, helping us to understand the magnitude of this effect in biological terms. 
+
+c. Suggestions for rewriting
+
+Part 1: Distance from headwater showed a significant correlation with annual total nitrogen load, with sites farther from headwater sources associated with different nitrogen loading patterns (correlation test: r = [correlation coefficient], df = [degrees of freedom], p = 0.03, α = [significance level]).
+
+Part 2: Nitrogen sources differed significantly in their average annual nitrogen load contributions to the San Joaquin River Delta, with some sources contributing substantially more than others (one-way ANOVA: F = [F-statistic], df = [degrees of freedom], p = 0.02, α = [significance level]). Post-hoc analyses revealed that [specific source types] contributed significantly more nitrogen load than [other source types] ([post-hoc test]: [test statistics and p-values for significant comparisons]).
+
+## Part 2: Data Visualization
+
+a. Clean and summarize
+
+```{r}
 
 ```
 
