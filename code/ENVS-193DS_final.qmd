@@ -54,6 +54,36 @@ Part 2: Nitrogen sources differed significantly in their average annual nitrogen
 a. Clean and summarize
 
 ```{r}
+# Create sst_clean object with data cleaning and summarizing
+sst_clean <- sst |> 
+  # Convert date column to proper date format
+ mutate(date = ymd(date)) |> 
+  # Extract year and month from date
+ mutate(year = year(date),
+         month = month(date, label = TRUE, abbr = TRUE)) |> 
+  # Filter for years 2018-2023 only
+ filter(year >= 2018 & year <= 2023) |> 
+  # Group by year and month to calculate monthly means
+ group_by(year, month) |> 
+  # Calculate mean monthly sea surface temperature
+ summarise(mean_monthly_sst = mean(temp, na.rm = TRUE), .groups = "drop") |> 
+  # Convert year to factor for proper ordering and visualization
+ mutate(year = as.factor(year)) |> 
+  # Arrange by year and month for proper ordering
+ arrange(year, month)
+
+# Display 5 random rows from sst_clean
+set.seed(123) # for reproducibility
+sst_clean |> 
+  slice_sample(n = 5)
+
+# Display structure of sst_clean
+str(sst_clean)
 
 ```
 
+b. Visualize the data
+
+
+
+## Part 3: Data Analysis
