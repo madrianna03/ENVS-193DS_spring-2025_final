@@ -10,4 +10,23 @@ format:
 ---
 [View the GitHub repository](https://github.com/madrianna03/ENVS-193DS_spring-2025_final.git)
 
+```{r}
+# Load packages
+library(tidyverse)    # for data wrangling and visualization
+library(lubridate)    # for working with dates
+library(here)         # for file paths
+library(knitr)        # for tables
+library(DHARMa)       # for model diagnostics
+library(MuMIn)        # for AIC model selection
+library(broom)        # for model outputs
+library(ggeffects)    # for model predictions and plotting
+
+# Read in datasets
+# Sea surface temperature data for Problem 2
+sst <- read_csv(here("data", "SST_update2023.csv"))
+
+# Nest box occupancy data for Problem 3
+nest_boxes <- read_csv(here("data", "occdist.csv"))
+
+```
 
