@@ -132,4 +132,14 @@ ggplot(sst_clean, aes(x = month, y = mean_monthly_sst, group = year, color = yea
 
 a. Response variable
 
-The 1s and 0s of this dataset represent Swift Parrot nest box occupancy
+The 1s and 0s in this dataset represent Swift Parrot nest box occupancy, where 1 indicates that a nest box was occupied by Swift Parrots for breeding, and 0 indicates that the box was either unoccupied or occupied by competitor species (Common Starlings or Tree Martins).
+
+b. Purpose of study
+
+Swift Parrots are critically endangered native birds that require conservation assistance, while Common Starlings and Tree Martins are either introduced species (starlings) or native competitors that can outcompete Swift Parrots for limited nesting sites. The study aims to understand whether nest boxes intended for Swift Parrot conservation are actually being used by the target species or by their competitors.
+
+c. Difference in "seasons"
+
+The two seasons are 2016 and 2019, representing early deployment (2016) when nest boxes were newly installed, and a follow-up assessment (2019) after three years had elapsed. This comparison allows researchers to understand how nest box occupancy patterns change over time as both target and competitor species become familiar with the artificial nesting sites.
+
+## d. Table of models
