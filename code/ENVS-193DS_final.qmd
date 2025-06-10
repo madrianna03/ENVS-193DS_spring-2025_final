@@ -84,6 +84,52 @@ str(sst_clean)
 
 b. Visualize the data
 
+```{r}
+# Create the visualization matching the target figure
+ggplot(sst_clean, aes(x = month, y = mean_monthly_sst, group = year, color = year)) +
+  # Add line geometry connecting points by year
+  geom_line(size = 1) +
+  # Add point geometry for individual data points
+  geom_point(size = 2) +
+  # Set up color gradient from light to dark blue for 2018-2023
+  scale_color_manual(values = c("2018" = "#87CEEB",  # light blue
+                               "2019" = "#6BB6FF",  # 
+                               "2020" = "#4682B4",  # 
+                               "2021" = "#1E90FF",  # 
+                               "2022" = "#0000CD",  # 
+                               "2023" = "#000080")) + # dark blue
+  # Set y-axis limits and breaks to match the figure
+  scale_y_continuous(limits = c(12, 20), 
+                     breaks = seq(12, 20, by = 2)) +
+  # Customize axis labels and legend
+  labs(x = "Month",
+       y = "Mean monthly sea surface temperature (°C)",
+       color = "Year") +
+  # Match the theme and styling of the target figure
+  theme_classic() +
+  theme(
+    # Add panel border (box around plot area)
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.8),
+    # White panel background
+    panel.background = element_rect(fill = "white", color = NA),
+    # Position legend inside plot area (top left)
+    legend.position = c(0.15, 0.85),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.title = element_text(size = 12, face = "bold"),
+    legend.text = element_text(size = 10),
+    # Customize axis text and titles
+    axis.text = element_text(size = 11, color = "black"),
+    axis.title = element_text(size = 12, color = "black"),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10)),
+    # Ensure complete axis box
+    axis.line = element_blank()
+  )
+```
 
 
 ## Part 3: Data Analysis
+
+a. Response variable
+
+The 1s and 0s of this dataset represent Swift Parrot nest box occupancy
