@@ -62,7 +62,7 @@ ENVS-193DS_spring-2025_final/
 ### HTML Document
 The final rendered analysis is available as an HTML document.
 
-**Link to rendered HTML:** [Insert link to your rendered .html file here]
+**Link to rendered HTML:** [https://madrianna03.github.io/ENVS-193DS_spring-2025_final/code/ENVS-193DS_final.html]
 ---
 
 **Repository Link:** https://github.com/madrianna03/ENVS-193DS_spring-2025_final.git
