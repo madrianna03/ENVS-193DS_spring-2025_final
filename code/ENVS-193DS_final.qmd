@@ -319,3 +319,19 @@ The relationship between distance from forest edge and occupancy probability dec
 
 The dramatic difference between seasons at the forest edge (54.2% vs 24.5%) suggests that Swift Parrots were much more likely to use boxes near forests in 2016 than in 2019. However, far from forests (900m), occupancy remained consistently low in both years (~9%). This interaction likely reflects increased competition from other species over time, habitat changes, or Swift Parrots learning to avoid certain areas due to predation risk or other factors.
 
+## Problem 4: Affective and exploratory visualizations
+
+a. Comparing visualizations
+
+My data in the first visualizations was simplified to fit into a single line plot such as productivity vs. hours of sleep. My final visualization was able to show all variables and productivity over time.
+
+I used the same colors, keeping the themes consistent, otherwise I changed them a lot.
+
+In the first visualizations we see productivity as a function of time of day and another graph showing productivity as a function of hours of sleep. My final visualization shows all independent variables (hrs of sleep, social context, etc.) in relation to productivity over time. I wanted to show change over time in my final visualization to see if some variables affecting productivty were more apparent as the quarter went on. 
+
+Week 9 I was told to clean up my legend and put more space between dates on x-axes to appear more visually appealing. I decided to keep those suggestions because I had thought I needed to clean up the graphs myself. The letterng had been bunched up so it was not as legible. 
+
+b. Sharing your affective visualization
+
+Attended
+
