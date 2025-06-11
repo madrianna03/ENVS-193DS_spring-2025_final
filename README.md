@@ -29,8 +29,8 @@ ENVS-193DS_spring-2025_final/
 ├── code/
 │   └── final_project.qmd (or .Rmd)
 └── data/
-    ├── sst_data.csv
-    └── swift_parrot_data.csv
+    ├── SST_update2023.csv
+    └── occdist.csv
 ```
 
 ### Data Sources
