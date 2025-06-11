@@ -282,3 +282,40 @@ Figure 1. Predicted probability of Swift Parrot (Lathamus discolor) nest box occ
 
 Data from Stojanovic, D., Owens, G., Young, C.M., Alves, F. and Heinsohn, R. 2021. "Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird." Restoration Ecology. DOI: 10.1111/rec.13319.
 
+j. Calculate model predictions
+
+```{r}
+# Calculate predicted probabilities at 0m and 900m for each season
+predictions_specific <- ggpredict(best_model, 
+                                  terms = c("edge_distance [0, 900]", "season"))
+
+# Display the predictions
+print(predictions_specific)
+
+# Alternative approach using predict() function
+new_data <- expand.grid(
+  edge_distance = c(0, 900),
+  season = c(2016, 2019)
+)
+
+# Calculate predictions with confidence intervals
+new_data$predicted_logit <- predict(best_model, newdata = new_data, type = "link")
+new_data$se <- predict(best_model, newdata = new_data, type = "link", se.fit = TRUE)$se.fit
+
+# Convert to probability scale
+new_data$predicted_prob <- plogis(new_data$predicted_logit)
+new_data$conf_low <- plogis(new_data$predicted_logit - 1.96 * new_data$se)
+new_data$conf_high <- plogis(new_data$predicted_logit + 1.96 * new_data$se)
+
+print(new_data)
+
+```
+
+k. Interpret you results
+
+Our analysis revealed significant patterns in Swift Parrot nest box occupancy related to both distance from forest edge and season. At the forest edge (0 m), the predicted probability of Swift Parrot occupancy was 54.2% in 2016 and 24.5% in 2019, while at 900 m from the forest edge, occupancy probability was 9.2% in both 2016 and 2019. 
+
+The relationship between distance from forest edge and occupancy probability decreased as distance increased, suggesting that Swift Parrots prefer nest boxes closer to forest edges. This pattern makes biological sense because Swift Parrots are forest-dependent species that require proximity to their primary food sources (eucalyptus flowers) and nesting habitat, which are more abundant near forest edges. 
+
+The dramatic difference between seasons at the forest edge (54.2% vs 24.5%) suggests that Swift Parrots were much more likely to use boxes near forests in 2016 than in 2019. However, far from forests (900m), occupancy remained consistently low in both years (~9%). This interaction likely reflects increased competition from other species over time, habitat changes, or Swift Parrots learning to avoid certain areas due to predation risk or other factors.
+
